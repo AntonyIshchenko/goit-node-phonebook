@@ -1,10 +1,11 @@
-import Contact from "../db/models/Contact.js";
+import Contact from '../db/models/Contact.js';
 
-const getContacts = () => Contact.find();
+const getContacts = (owner) => Contact.find({ owner });
 
 const createOneContact = (contactData) => Contact.create(contactData);
 
-const removeContact = (id) => Contact.findByIdAndDelete(id);
+const removeContact = (id, owner) =>
+  Contact.findByOneAndDelete({ _id: id, owner });
 
 export default {
   getContacts,

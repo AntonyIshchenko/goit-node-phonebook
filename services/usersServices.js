@@ -26,3 +26,11 @@ export async function updateUserToken(id) {
 
   return result;
 }
+
+export async function clearUserToken(id) {
+  await User.findByIdAndUpdate(id, { token: '' });
+}
+
+export async function updateUserAvatar(id, avatar) {
+  return await User.findByIdAndUpdate(id, { avatar }, { new: true });
+}
